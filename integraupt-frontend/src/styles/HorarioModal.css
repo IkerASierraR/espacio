@@ -1,0 +1,413 @@
+.reservas-horario-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  backdrop-filter: blur(2px);
+    overflow-y: auto;
+}
+
+.horario-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.horario-modal__container {
+  position: relative;
+  z-index: 1;
+  width: min(1080px, 100%);
+  background: linear-gradient(135deg, #f5f8ff 0%, #ffffff 100%);
+  border-radius: 28px;
+  box-shadow: 0 32px 80px rgba(15, 23, 42, 0.16);
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.horario-modal__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.horario-modal__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(59, 130, 246, 0.14);
+  color: #2563eb;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.horario-modal__back:hover {
+  background: rgba(59, 130, 246, 0.25);
+}
+
+.horario-modal__close {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: none;
+  background: rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.horario-modal__close:hover {
+  background: rgba(15, 23, 42, 0.16);
+}
+
+.horario-modal__space-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 1.75rem 2rem;
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.horario-modal__space-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.horario-modal__space-tag {
+  background: #e0ebff;
+  color: #1d4ed8;
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.horario-modal__space-code {
+  color: #334155;
+  background: rgba(148, 163, 184, 0.18);
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.horario-modal__space-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  color: #0f172a;
+}
+
+.horario-modal__space-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  color: #475569;
+}
+
+.horario-modal__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.horario-modal__space-note {
+  margin: 0;
+  color: #1f2937;
+  background: rgba(59, 130, 246, 0.08);
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  font-size: 0.95rem;
+}
+
+.horario-modal__schedule {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 24px;
+  padding: 1.75rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.16);
+}
+
+.horario-modal__schedule-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.horario-modal__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.horario-modal__shift-button {
+  flex: 1;
+  min-width: 180px;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 16px;
+  background: rgba(59, 130, 246, 0.08);
+  color: #1d4ed8;
+  padding: 0.85rem 1.2rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover para botones normales (no activos) */
+.horario-modal__shift-button:hover {
+  background: rgba(59, 130, 246, 0.14);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.horario-modal__shift-button:not(.horario-modal__shift-button--active):hover {
+  background: rgba(59, 130, 246, 0.14);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.horario-modal__shift-button--active {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+  transform: translateY(-1px);
+  cursor: default;
+}
+
+.horario-modal__shift-button--active:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+.horario-modal__shift-label {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.horario-modal__shift-range {
+  font-size: 0.85rem;
+  color: inherit;
+  opacity: 0.8;
+}
+.horario-modal__schedule-header h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #1e293b;
+}
+
+.horario-modal__schedule-header p {
+  margin: 0.25rem 0 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.horario-modal__legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(59, 130, 246, 0.08);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.horario-modal__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.horario-modal__legend-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+.horario-modal__legend-dot--ocupado {
+  background: #2563eb;
+}
+
+.horario-modal__legend-dot--libre {
+  background: #16a34a;
+}
+
+.horario-modal__table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.horario-modal__table {
+  width: 100%;
+   table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.horario-modal__table thead th {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.horario-modal__table thead th:first-child {
+  text-align: left;
+  border-top-left-radius: 16px;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.horario-modal__table thead th:last-child {
+  border-top-right-radius: 16px;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.horario-modal__table tbody tr:last-child th,
+.horario-modal__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.horario-modal__time {
+  padding: 1rem;
+  text-align: left;
+  background: rgba(59, 130, 246, 0.05);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  min-width: 140px;
+}
+
+
+
+.horario-modal__time-range {
+  display: block;
+  color: #64748b;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.horario-modal__time-range--only {
+  color: #1f2937;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.horario-modal__table-cell {
+  padding: 1rem 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+   min-width: 110px;
+  transition: background 0.2s ease;
+}
+
+.horario-modal__table-cell--ocupado {
+  background: rgba(37, 99, 235, 0.12);
+  color: #1d4ed8;
+  font-weight: 600;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.horario-modal__table-cell--libre {
+  background: rgba(74, 222, 128, 0.15);
+  color: #166534;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.horario-modal__cell-status {
+  display: block;
+  font-weight: 600;
+}
+
+.horario-modal__cell-time {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: rgba(30, 41, 59, 0.75);
+}
+
+.horario-modal__table-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 0;
+  color: #1f2937;
+}
+
+.horario-modal__table-status--error {
+  color: #b91c1c;
+}
+
+.horario-modal__retry {
+  margin-left: 1rem;
+  background: none;
+  border: none;
+  color: #1d4ed8;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.horario-modal__retry:hover {
+  text-decoration: underline;
+}
+
+.horario-modal__spinner {
+  animation: horario-modal-spin 1s linear infinite;
+}
+
+@keyframes horario-modal-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .horario-modal__container {
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+
+  .horario-modal__space-card,
+  .horario-modal__schedule {
+    border-radius: 18px;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .horario-modal__legend {
+    width: 100%;
+    justify-content: center;
+  }
+}

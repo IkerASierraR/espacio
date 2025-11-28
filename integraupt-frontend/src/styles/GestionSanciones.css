@@ -1,0 +1,446 @@
+.gestion-sanciones {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.gestion-sanciones-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.gestion-sanciones-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.gestion-sanciones-subtitle {
+  margin: 0.4rem 0 0;
+  color: #5f6b7d;
+  max-width: 40rem;
+}
+
+.gestion-sanciones-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.gestion-sanciones-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.gestion-sanciones-stat {
+  background-color: #f4f6fb;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 12rem;
+}
+
+.gestion-sanciones-stat p {
+  margin: 0;
+  color: #55627a;
+}
+
+.gestion-sanciones-stat strong {
+  display: block;
+  font-size: 1.25rem;
+  color: #1f2937;
+}
+
+.gestion-sanciones-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.gestion-sanciones-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d9e0ec;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  min-width: 18rem;
+}
+
+.gestion-sanciones-search input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.gestion-sanciones-form {
+  background-color: #fff;
+  border-radius: 0.75rem;
+  border: 1px solid #d9e0ec;
+  padding: 1.5rem;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.sancion-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sancion-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.sancion-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  color: #394156;
+}
+
+.sancion-form-field input,
+.sancion-form-field select,
+.sancion-form-field textarea {
+  border-radius: 0.6rem;
+  border: 1px solid #cfd5e2;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.95rem;
+  background-color: #fff;
+  color: #1f2937;
+}
+
+.sancion-form-field textarea {
+  resize: vertical;
+}
+
+.sancion-form-errors {
+  border-radius: 0.75rem;
+  background-color: #fff5f5;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  padding: 0.75rem 1rem;
+}
+
+.sancion-form-errors ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.sancion-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.sancion-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.65rem;
+  padding: 0.55rem 1.1rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.sancion-btn.primary {
+  background-color: #1d4ed8;
+  color: #fff;
+  box-shadow: 0 10px 18px rgba(29, 78, 216, 0.25);
+}
+
+.sancion-btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px rgba(29, 78, 216, 0.3);
+}
+
+.sancion-btn.secondary {
+  background-color: #fff;
+  color: #1f2937;
+  border: 1px solid #dbe0ea;
+}
+
+.sancion-btn.secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.1);
+}
+
+.sancion-btn.tertiary {
+  background-color: #f1f5f9;
+  color: #1f2937;
+  border: 1px solid #dbe0ea;
+  padding: 0.4rem 0.8rem;
+}
+
+.sancion-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.sancion-field-hint {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.sancion-user-search-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+}
+
+.sancion-user-search {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.sancion-user-search input {
+  flex: 1;
+}
+
+.sancion-selected-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: #fff;
+  border: 1px solid #dbe0ea;
+  border-radius: 0.75rem;
+}
+
+.sancion-selected-title {
+  display: block;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.35rem;
+}
+
+.sancion-selected-summary {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: #475569;
+}
+
+.sancion-selected-summary strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.sancion-selected-summary--muted {
+  color: #94a3b8;
+}
+
+.sancion-selected-code,
+.sancion-selected-escuela,
+.sancion-selected-id {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.sancion-user-results {
+  border: 1px solid #dbe0ea;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.sancion-user-results ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sancion-user-results li + li {
+  border-top: 1px solid #e2e8f0;
+}
+
+.sancion-user-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sancion-user-option:hover {
+  background-color: #f8fafc;
+}
+
+.sancion-user-option:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.sancion-user-option-title {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.sancion-user-option-meta {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.sancion-user-status {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  color: #1f2937;
+}
+
+.sancion-user-status--muted {
+  color: #94a3b8;
+}
+
+.sancion-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.sancion-status.success {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.sancion-status.error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.sancion-table-wrapper {
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  border: 1px solid #d9e0ec;
+  background-color: #fff;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.sancion-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.sancion-table thead {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+.sancion-table th,
+.sancion-table td {
+  padding: 0.9rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+.sancion-user-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.sancion-user-name {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.sancion-user-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.sancion-user-code {
+  font-weight: 500;
+}
+
+
+.sancion-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.sancion-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.sancion-table-empty {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: #6b7280;
+  background-color: #fff;
+  border-radius: 0.75rem;
+  border: 1px solid #d9e0ec;
+}
+
+.sancion-spinner {
+  animation: sancion-spin 1s linear infinite;
+}
+
+@keyframes sancion-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sancion-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.sancion-badge-active {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.sancion-badge-completed {
+  background-color: #e0f2fe;
+  color: #1d4ed8;
+}
+
+.sancion-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sancion-motivo {
+  max-width: 20rem;
+}

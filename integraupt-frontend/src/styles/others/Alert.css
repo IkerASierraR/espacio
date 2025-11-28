@@ -1,0 +1,71 @@
+.alert {
+  position: relative;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 0.875rem;
+  display: grid;
+  grid-template-columns: 0 1fr;
+  gap: 0.125rem;
+  align-items: start;
+}
+
+.alert:has(> svg) {
+  grid-template-columns: calc(var(--spacing) * 4) 1fr;
+  gap: 0 0.75rem;
+}
+
+.alert > svg {
+  height: 1rem;
+  width: 1rem;
+  transform: translateY(0.125rem);
+  color: currentColor;
+}
+
+.alert-default {
+  background-color: white;
+  color: #111827;
+  border-color: #e5e7eb;
+}
+
+.alert-destructive {
+  color: #dc2626;
+  background-color: white;
+  border-color: #fecaca;
+}
+
+.alert-destructive > svg {
+  color: currentColor;
+}
+
+.alert-destructive .alert-description {
+  color: rgba(220, 38, 38, 0.9);
+}
+
+.alert-title {
+  grid-column-start: 2;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.alert-description {
+  grid-column-start: 2;
+  display: grid;
+  justify-items: start;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.alert-description p {
+  line-height: 1.625;
+}

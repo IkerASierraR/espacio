@@ -1,0 +1,369 @@
+.eventos-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+}
+
+.eventos-main {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .eventos-main {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .eventos-main {
+    padding: 2rem 2rem;
+  }
+}
+
+.eventos-header {
+  margin-bottom: 2rem;
+}
+
+.eventos-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #1e3a8a;
+  margin-bottom: 0.5rem;
+}
+
+.eventos-subtitle {
+  color: #1d4ed8;
+}
+
+.eventos-filters {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.eventos-filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.eventos-filter-select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.eventos-filter-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.eventos-filter-btn {
+  padding: 0.5rem 1rem;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.eventos-filter-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.eventos-list {
+  margin-bottom: 1.5rem;
+}
+
+.eventos-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid #f3f4f6;
+  transition: all 0.3s;
+  margin-bottom: 1.5rem;
+}
+
+.eventos-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.eventos-card-destacado {
+  border-color: #fcd34d;
+  box-shadow: 0 0 0 2px #fef3c7;
+}
+
+.eventos-destacado-banner {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+.eventos-destacado-content {
+  display: flex;
+  align-items: center;
+}
+
+.eventos-destacado-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+}
+
+.eventos-destacado-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.eventos-card-content {
+  padding: 1.5rem;
+}
+
+.eventos-card-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .eventos-card-layout {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.eventos-card-info {
+  flex: 1;
+  margin-top: -1.5rem
+}
+
+.eventos-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: -1rem;
+}
+
+.eventos-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-right: 0.75rem;
+}
+
+.eventos-categoria {
+  padding: 0.25rem 0.5rem;
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+}
+
+.eventos-descripcion {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.eventos-details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+@media (min-width: 768px) {
+  .eventos-details-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.eventos-detail {
+  display: flex;
+  align-items: center;
+}
+
+.eventos-detail-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+  color: #3b82f6;
+}
+
+.eventos-participantes {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.eventos-participantes-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+  color: #6b7280;
+}
+
+.eventos-participantes-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.eventos-progress-container {
+  margin-left: 0.75rem;
+  flex: 1;
+  max-width: 20rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  height: 0.5rem;
+  overflow: hidden;
+}
+
+.eventos-progress-bar {
+  background-color: #2563eb;
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s;
+}
+
+.eventos-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  space-y: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .eventos-actions {
+    margin-top: 0;
+    margin-left: 1.5rem;
+    min-width: 10rem;
+  }
+}
+
+.eventos-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+}
+
+.eventos-btn-primary {
+  background-color: #2563eb;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.eventos-btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.eventos-btn-secondary {
+  background-color: transparent;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+}
+
+.eventos-btn-secondary:hover {
+  color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.eventos-mis-eventos {
+  margin-top: 3rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.eventos-mis-eventos-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.eventos-mis-eventos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .eventos-mis-eventos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.eventos-mis-evento-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.eventos-mis-evento-title {
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.eventos-mis-evento-fecha {
+  display: flex;
+  align-items: center;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.eventos-mis-evento-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.25rem;
+}
+
+.eventos-mis-evento-status {
+  margin-top: 0.5rem;
+}
+
+.eventos-status-badge {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+}
+
+.eventos-status-inscrito {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.eventos-status-lista-espera {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+/* Utility classes for spacing */
+.space-y-6 > * + * {
+  margin-top: 1.5rem;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.space-y-2 > * + * {
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,44 @@
+.scroll-area {
+  position: relative;
+}
+
+.scroll-area-viewport {
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  transition: color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.scroll-area-viewport:focus-visible {
+  ring: 3px;
+  ring-color: rgba(59, 130, 246, 0.5);
+  outline: 1px solid transparent;
+}
+
+.scroll-area-scrollbar {
+  display: flex;
+  touch-action: none;
+  padding: 1px;
+  transition: background-color 0.2s;
+  user-select: none;
+}
+
+.scroll-area-scrollbar-vertical {
+  height: 100%;
+  width: 0.625rem;
+  border-left: 1px solid transparent;
+}
+
+.scroll-area-scrollbar-horizontal {
+  height: 0.625rem;
+  flex-direction: column;
+  border-top: 1px solid transparent;
+}
+
+.scroll-area-thumb {
+  background-color: #e5e7eb;
+  position: relative;
+  flex: 1;
+  border-radius: 9999px;
+}

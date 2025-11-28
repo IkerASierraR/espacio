@@ -1,0 +1,72 @@
+.resizable-panel-group {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.resizable-panel-group[data-panel-group-direction="vertical"] {
+  flex-direction: column;
+}
+
+.resizable-handle {
+  background-color: #e5e7eb;
+  position: relative;
+  width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.resizable-handle:focus-visible {
+  ring: 1px;
+  ring-color: #3b82f6;
+  ring-offset: 1px;
+  outline: none;
+}
+
+.resizable-handle::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-block-end: 0;
+  left: 50%;
+  width: 0.25rem;
+  transform: translateX(-50%);
+}
+
+.resizable-handle[data-panel-group-direction="vertical"] {
+  height: 1px;
+  width: 100%;
+}
+
+.resizable-handle[data-panel-group-direction="vertical"]::after {
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  top: 50%;
+  height: 0.25rem;
+  width: 100%;
+  transform: translateY(-50%);
+  transform: translateX(0);
+}
+
+.resizable-handle[data-panel-group-direction="vertical"] > div {
+  transform: rotate(90deg);
+}
+
+.resizable-handle-grip {
+  background-color: #e5e7eb;
+  z-index: 10;
+  display: flex;
+  height: 1rem;
+  width: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  border: 1px solid #e5e7eb;
+}
+
+.resizable-handle-icon {
+  height: 0.625rem;
+  width: 0.625rem;
+}

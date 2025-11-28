@@ -1,0 +1,1 @@
+export { ReservasPage as GestionReservas } from "./ReservasPage";

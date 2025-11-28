@@ -1,0 +1,52 @@
+.profile-grid-empty {
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.profile-grid-empty-icon {
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.profile-grid-empty-svg {
+  margin-left: auto;
+  margin-right: auto;
+  height: 3rem;
+  width: 3rem;
+}
+
+.profile-grid-empty-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.profile-grid-empty-message {
+  color: #6b7280;
+}
+
+.profile-grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .profile-grid-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile-grid-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1280px) {
+  .profile-grid-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

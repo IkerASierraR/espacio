@@ -1,0 +1,402 @@
+.perfil-screen-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.perfil-screen-main {
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .perfil-screen-main {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .perfil-screen-main {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.perfil-screen-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.perfil-screen-header {
+  background: linear-gradient(to right, #2563eb, #4f46e5);
+  padding: 2rem;
+  color: white;
+}
+
+.perfil-screen-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.perfil-screen-profile-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.perfil-screen-avatar-container {
+  position: relative;
+}
+
+.perfil-screen-avatar {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 9999px;
+  border-width: 4px;
+  border-color: white;
+  object-fit: cover;
+}
+
+.perfil-screen-avatar-placeholder {
+  width: 6rem;
+  height: 6rem;
+  background-color: #1e40af;
+  border-radius: 9999px;
+  border-width: 4px;
+  border-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.perfil-screen-avatar-icon {
+  height: 3rem;
+  width: 3rem;
+  color: white;
+}
+
+.perfil-screen-online-indicator {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #10b981;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 9999px;
+}
+
+.perfil-screen-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-screen-user-name {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.perfil-screen-career {
+  color: #dbeafe;
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.perfil-screen-semester {
+  color: #bfdbfe;
+  margin: 0;
+}
+
+.perfil-screen-edit-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.perfil-screen-edit-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.perfil-screen-button-icon {
+  height: 1rem;
+  width: 1rem;
+}
+
+.perfil-screen-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.perfil-screen-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .perfil-screen-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.perfil-screen-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-screen-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.perfil-screen-input {
+  width: 100%;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+}
+
+.perfil-screen-input:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #3b82f6;
+  border-color: transparent;
+}
+
+.perfil-screen-text {
+  color: #111827;
+  margin: 0;
+}
+
+.perfil-screen-email {
+  display: flex;
+  align-items: center;
+}
+
+.perfil-screen-career-text {
+  display: flex;
+  align-items: center;
+}
+
+.perfil-screen-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+  color: #6b7280;
+}
+
+.perfil-screen-gpa {
+  color: #111827;
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.perfil-screen-textarea {
+  width: 100%;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+}
+
+.perfil-screen-textarea:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #3b82f6;
+  border-color: transparent;
+}
+
+.perfil-screen-bio {
+  color: #374151;
+  margin: 0;
+}
+
+.perfil-screen-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-screen-section-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.perfil-screen-section-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.perfil-screen-skills-icon {
+  color: #eab308;
+}
+
+.perfil-screen-achievements-icon {
+  color: #f97316;
+}
+
+.perfil-screen-teams-icon {
+  color: #22c55e;
+}
+
+.perfil-screen-skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.perfil-screen-skill {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 9999px;
+}
+
+.perfil-screen-skill-editable {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.perfil-screen-skill-remove {
+  color: #3b82f6;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.perfil-screen-skill-remove:hover {
+  color: #1d4ed8;
+}
+
+.perfil-screen-skill-remove-icon {
+  height: 0.75rem;
+  width: 0.75rem;
+}
+
+.perfil-screen-skill-input {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}
+
+.perfil-screen-skill-input:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #3b82f6;
+  border-color: transparent;
+}
+
+.perfil-screen-achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.perfil-screen-achievement-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.perfil-screen-achievement-bullet {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #f97316;
+  border-radius: 9999px;
+  margin-top: 0.5rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.perfil-screen-achievement-text {
+  color: #374151;
+}
+
+.perfil-screen-teams-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.perfil-screen-team {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  background-color: #dcfce7;
+  color: #166534;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 9999px;
+}
+
+.perfil-screen-save-section {
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.perfil-screen-save-button {
+  background-color: #2563eb;
+  color: white;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.perfil-screen-save-button:hover {
+  background-color: #1d4ed8;
+}

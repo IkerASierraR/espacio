@@ -1,0 +1,49 @@
+.radio-group {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.radio-group-item {
+  aspect-ratio: 1 / 1;
+  height: 1rem;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.radio-group-item:focus-visible {
+  border-color: #3b82f6;
+  ring: 3px;
+  ring-color: rgba(59, 130, 246, 0.5);
+}
+
+.radio-group-item[aria-invalid="true"] {
+  ring-color: rgba(220, 38, 38, 0.2);
+  border-color: #dc2626;
+}
+
+.radio-group-item:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.radio-group-indicator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio-group-indicator-icon {
+  fill: #3b82f6;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 0.5rem;
+  width: 0.5rem;
+  transform: translate(-50%, -50%);
+}

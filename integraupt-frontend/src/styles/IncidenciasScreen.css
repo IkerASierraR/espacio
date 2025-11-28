@@ -1,0 +1,876 @@
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 15px 35px -15px rgba(15, 23, 42, 0.35);
+  }
+  50% {
+    box-shadow: 0 15px 35px -15px rgba(37, 99, 235, 0.5);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes incidencias-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.incidencias-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+  /* animation: fadeInUp 0.8s ease-out; */
+}
+
+.incidencias-main {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+@media (min-width: 640px) {
+  .incidencias-main {
+    padding: 2.5rem 1.5rem 3.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .incidencias-main {
+    padding: 3rem 2rem 4rem;
+  }
+}
+
+.incidencias-header {
+  margin-bottom: 2rem;
+  animation: slideInLeft 0.8s ease-out 0.3s both;
+}
+
+.incidencias-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: #0f172a;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.incidencias-back-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.incidencias-back-button:hover::before {
+  left: 100%;
+}
+
+.incidencias-back-button:hover {
+  background-color: rgba(30, 64, 175, 0.12);
+  color: #1d4ed8;
+  transform: translateX(-5px);
+}
+
+.incidencias-back-icon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.incidencias-back-button:hover .incidencias-back-icon {
+  transform: scale(1.2);
+}
+
+.incidencias-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.incidencias-subtitle {
+  color: #334155;
+  max-width: 50rem;
+}
+
+.incidencias-card {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 15px 35px -15px rgba(15, 23, 42, 0.35);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideInRight 0.6s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.incidencias-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s;
+}
+
+.incidencias-card:hover::before {
+  left: 100%;
+}
+
+.incidencias-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 45px -20px rgba(15, 23, 42, 0.4);
+}
+
+@media (min-width: 768px) {
+  .incidencias-card {
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.incidencias-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.incidencias-card-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.incidencias-card:hover .incidencias-card-header h2 {
+  color: #2563eb;
+}
+
+.incidencias-card-header p {
+  margin: 0.25rem 0 0;
+  color: #475569;
+  transition: color 0.3s ease;
+}
+
+.incidencias-card:hover .incidencias-card-header p {
+  color: #4b5563;
+}
+
+.incidencias-card-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #2563eb;
+  transition: transform 0.3s ease;
+}
+
+.incidencias-card:hover .incidencias-card-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.incidencias-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.incidencias-label {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.incidencias-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .incidencias-input-group {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.incidencias-input,
+.incidencias-textarea {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #cbd5f5;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.incidencias-input:focus,
+.incidencias-textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  background-color: #ffffff;
+  transform: scale(1.02);
+}
+
+.incidencias-textarea {
+  resize: vertical;
+  min-height: 8rem;
+  transition: all 0.3s ease;
+}
+
+.incidencias-textarea:disabled {
+  background-color: #f1f5f9;
+  color: #94a3b8;
+}
+
+.incidencias-reservas-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.incidencias-reserva-item {
+  margin: 0;
+  animation: slideInRight 0.5s ease-out;
+}
+
+.incidencias-reserva-item:nth-child(1) { animation-delay: 0.1s; }
+.incidencias-reserva-item:nth-child(2) { animation-delay: 0.2s; }
+.incidencias-reserva-item:nth-child(3) { animation-delay: 0.3s; }
+
+.incidencias-reserva-button {
+  width: 100%;
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+  text-align: left;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.incidencias-reserva-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s;
+}
+
+.incidencias-reserva-button:hover::before {
+  left: 100%;
+}
+
+.incidencias-reserva-button:hover:not(:disabled) {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 35px -20px rgba(37, 99, 235, 0.65);
+  border-color: rgba(37, 99, 235, 0.45);
+}
+
+.incidencias-reserva-button:disabled {
+  cursor: wait;
+  opacity: 0.85;
+}
+
+.incidencias-reserva-button-selected {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+  box-shadow: 0 20px 35px -20px rgba(37, 99, 235, 0.75);
+  animation: pulseGlow 2s infinite;
+}
+
+.incidencias-reserva-header {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.incidencias-reserva-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.incidencias-reserva-name {
+  font-weight: 600;
+  color: #1e3a8a;
+  transition: color 0.3s ease;
+}
+
+.incidencias-reserva-button:hover .incidencias-reserva-name {
+  color: #2563eb;
+}
+
+.incidencias-reserva-meta {
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.incidencias-reserva-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: rgba(37, 99, 235, 0.12);
+  color: #1d4ed8;
+  text-transform: capitalize;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.incidencias-reserva-button:hover .incidencias-reserva-status {
+  transform: scale(1.1);
+}
+
+.incidencias-reserva-status-aprobada {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.incidencias-reserva-status-pendiente {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.incidencias-reserva-status-rechazada {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.incidencias-reserva-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.incidencias-reserva-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.incidencias-reserva-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.incidencias-reserva-button:hover .incidencias-reserva-chip {
+  transform: scale(1.05);
+}
+
+.incidencias-reserva-chip-active {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.incidencias-reserva-chip-inactive {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.incidencias-reserva-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #1d4ed8;
+}
+
+.incidencias-reserva-loading-icon {
+  width: 1rem;
+  height: 1rem;
+  animation: incidencias-spin 1s linear infinite;
+}
+
+.incidencias-selected-reserva {
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  transition: all 0.3s ease;
+  animation: bounceIn 0.6s ease-out;
+}
+
+.incidencias-selected-reserva:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px -20px rgba(37, 99, 235, 0.4);
+}
+
+.incidencias-selected-reserva h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+  color: #1e3a8a;
+}
+
+.incidencias-selected-reserva p {
+  margin: 0;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+.incidencias-selected-reserva-placeholder {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.incidencias-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.incidencias-primary-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.incidencias-primary-button:hover::before {
+  left: 100%;
+}
+
+.incidencias-primary-button:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 30px -15px rgba(37, 99, 235, 0.6);
+}
+
+.incidencias-primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.incidencias-button-icon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.incidencias-primary-button:hover .incidencias-button-icon {
+  transform: scale(1.2);
+}
+
+.incidencias-button-spinner {
+  animation: incidencias-spin 1s linear infinite;
+}
+
+.incidencias-feedback {
+  margin-top: 1rem;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  animation: bounceIn 0.6s ease-out;
+  transition: all 0.3s ease;
+}
+
+.incidencias-feedback:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -15px rgba(0, 0, 0, 0.2);
+}
+
+.incidencias-feedback p {
+  margin: 0;
+}
+
+.incidencias-feedback-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.incidencias-feedback:hover .incidencias-feedback-icon {
+  transform: scale(1.2);
+}
+
+.incidencias-feedback-success {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.incidencias-feedback-error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.incidencias-feedback-info {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.incidencias-availability {
+  margin-top: 1rem;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.incidencias-availability:hover {
+  transform: translateX(5px);
+  box-shadow: 0 15px 30px -20px rgba(0, 0, 0, 0.2);
+}
+
+.incidencias-availability h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.incidencias-availability span {
+  display: block;
+  margin-top: 0.25rem;
+  color: rgba(15, 23, 42, 0.65);
+  font-size: 0.9rem;
+}
+
+.incidencias-availability-success {
+  background-color: #ecfdf5;
+  border: 1px solid #bbf7d0;
+}
+
+.incidencias-availability-warning {
+  background-color: #fff7ed;
+  border: 1px solid #fed7aa;
+}
+
+.incidencias-availability-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #0f172a;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.incidencias-availability:hover .incidencias-availability-icon {
+  transform: scale(1.2);
+}
+
+.incidencias-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+@media (min-width: 1024px) {
+  .incidencias-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.incidencias-empty {
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+  padding: 1.5rem;
+  color: #475569;
+  text-align: center;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.incidencias-empty:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px -20px rgba(0, 0, 0, 0.15);
+}
+
+.incidencias-loading-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-bottom: 0.75rem;
+  animation: incidencias-spin 1s linear infinite;
+  color: #2563eb;
+}
+
+.incidencias-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.incidencias-list-item {
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  background-color: #f8fafc;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideInRight 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.incidencias-list-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s;
+}
+
+.incidencias-list-item:hover::before {
+  left: 100%;
+}
+
+.incidencias-list-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 35px -20px rgba(15, 23, 42, 0.45);
+}
+
+.incidencias-list-item:nth-child(1) { animation-delay: 0.1s; }
+.incidencias-list-item:nth-child(2) { animation-delay: 0.2s; }
+.incidencias-list-item:nth-child(3) { animation-delay: 0.3s; }
+
+.incidencias-list-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.incidencias-list-title {
+  font-weight: 600;
+  color: #1e3a8a;
+  transition: color 0.3s ease;
+}
+
+.incidencias-list-item:hover .incidencias-list-title {
+  color: #2563eb;
+}
+
+.incidencias-list-date {
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.incidencias-list-description {
+  margin: 0;
+  color: #1f2937;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+/* Welcome Card Animations */
+.home-welcome-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.95) 0%, rgba(30, 64, 175, 0.9) 100%);
+  color: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 1.75rem;
+  box-shadow: 0 25px 45px -30px rgba(37, 99, 235, 0.9);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.home-welcome-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  animation: shimmer 3s infinite;
+}
+
+.home-welcome-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.35), transparent 55%);
+}
+
+.home-welcome-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.home-welcome-date {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  opacity: 0.8;
+  margin-bottom: 0.75rem;
+}
+
+.home-title {
+  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.home-subtitle {
+  max-width: 540px;
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.home-welcome-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  animation: float 3s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.home-welcome-avatar:hover {
+  animation: float 1.5s ease-in-out infinite;
+}

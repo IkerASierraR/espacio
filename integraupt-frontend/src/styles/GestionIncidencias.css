@@ -1,0 +1,247 @@
+.gestion-incidencias {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.gestion-incidencias-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.gestion-incidencias-title {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.gestion-incidencias-subtitle {
+  margin: 0.35rem 0 0;
+  color: #5f6b7d;
+  max-width: 38rem;
+}
+
+.gestion-incidencias-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.6rem 1.1rem;
+  background-color: #1d4ed8;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(29, 78, 216, 0.2);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.gestion-incidencias-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.gestion-incidencias-btn:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(29, 78, 216, 0.28);
+}
+
+.gestion-incidencias-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.gestion-incidencias-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1.1rem;
+  background-color: #f4f6fb;
+  border-radius: 0.85rem;
+  min-width: 12rem;
+}
+
+.gestion-incidencias-stat p {
+  margin: 0;
+  color: #5b6579;
+}
+
+.gestion-incidencias-stat strong {
+  display: block;
+  font-size: 1.25rem;
+  color: #1f2937;
+}
+
+.gestion-incidencias-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.gestion-incidencias-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.75rem;
+  border: 1px solid #d9e0ec;
+  background-color: #fff;
+  min-width: 18rem;
+}
+
+.gestion-incidencias-search input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.gestion-incidencias-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.gestion-incidencias-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: #3f4c63;
+}
+
+.gestion-incidencias-filter select,
+.gestion-incidencias-filter input {
+  border-radius: 0.7rem;
+  border: 1px solid #ccd2e0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  min-width: 12rem;
+  background-color: #fff;
+}
+
+.gestion-incidencias-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+  border: 1px solid #dbe2f0;
+  color: #1f2937;
+}
+
+.gestion-incidencias-alert.error {
+  background-color: #fff5f5;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.gestion-incidencias-table-wrapper {
+  overflow-x: auto;
+  border-radius: 0.9rem;
+  border: 1px solid #dbe0ea;
+  background-color: #fff;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.gestion-incidencias-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.gestion-incidencias-table th,
+.gestion-incidencias-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eef2f8;
+}
+
+.gestion-incidencias-table th {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #6b7280;
+  background-color: #f8fafc;
+}
+
+.gestion-incidencias-table tbody tr:hover {
+  background-color: #f8fbff;
+}
+
+.gestion-incidencias-table-empty {
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 0.8rem;
+  border: 1px dashed #cbd5f0;
+  color: #5f6b7d;
+  background-color: #f9fbff;
+}
+
+.gestion-incidencias-spinner {
+  animation: gestion-incidencias-spin 1s linear infinite;
+}
+
+@keyframes gestion-incidencias-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gestion-incidencias-date,
+.gestion-incidencias-escuela {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gestion-incidencias-espacio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.gestion-incidencias-espacio span {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.gestion-incidencias-usuario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.gestion-incidencias-usuario span {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.gestion-incidencias-facultad {
+  display: block;
+  color: #4f46e5;
+  font-size: 0.8rem;
+}
+
+.gestion-incidencias-descripcion {
+  max-width: 28rem;
+}
+
+.gestion-incidencias-descripcion-empty {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #9ca3af;
+}

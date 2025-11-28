@@ -1,0 +1,274 @@
+.navigation {
+  background-color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid #dbeafe;
+}
+
+.navigation-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .navigation-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navigation-container {
+    padding: 0 2rem;
+  }
+}
+
+.navigation-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+}
+
+/* Logo Section */
+.navigation-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navigation-back-btn {
+  margin-right: 0.75rem;
+  padding: 0.5rem;
+  color: #4b5563;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.navigation-back-btn:hover {
+  color: #1d4ed8;
+  background-color: #eff6ff;
+}
+
+.navigation-back-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.navigation-logo-icon {
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: #1d4ed8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+}
+
+.navigation-logo-svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  color: white;
+}
+
+.navigation-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation-app-name {
+  font-size: 1.25rem;
+  color: #1e40af;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.navigation-app-subtitle {
+  font-size: 0.75rem;
+  color: #2563eb;
+  margin: 0;
+  line-height: 1;
+}
+
+/* Desktop Navigation */
+.navigation-desktop {
+  display: none;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .navigation-desktop {
+    display: flex;
+  }
+}
+
+.navigation-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+  background: none;
+  font-size: 0.875rem;
+}
+
+.navigation-item-active {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+
+.navigation-item-inactive {
+  color: #4b5563;
+}
+
+.navigation-item-inactive:hover {
+  color: #1d4ed8;
+  background-color: #eff6ff;
+}
+
+.navigation-item-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.navigation-item-label {
+  font-weight: 500;
+}
+
+/* User Section */
+.navigation-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navigation-user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navigation-avatar {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  border: 2px solid #bfdbfe;
+}
+
+.navigation-avatar-placeholder {
+  height: 2rem;
+  width: 2rem;
+  background-color: #2563eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation-avatar-icon {
+  height: 1rem;
+  width: 1rem;
+  color: white;
+}
+
+.navigation-user-name {
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+@media (max-width: 640px) {
+  .navigation-user-name {
+    display: none;
+  }
+}
+
+.navigation-logout-btn {
+  background-color: #dc2626;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.navigation-logout-btn:hover {
+  background-color: #b91c1c;
+}
+
+.navigation-logout-icon {
+  height: 1rem;
+  width: 1rem;
+}
+
+.navigation-logout-text {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .navigation-logout-text {
+    display: inline;
+  }
+}
+
+/* Mobile Navigation */
+.navigation-mobile {
+  display: block;
+  border-top: 1px solid #e5e7eb;
+}
+
+@media (min-width: 768px) {
+  .navigation-mobile {
+    display: none;
+  }
+}
+
+.navigation-mobile-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+}
+
+.navigation-mobile-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.navigation-mobile-item-active {
+  color: #1d4ed8;
+}
+
+.navigation-mobile-item-inactive {
+  color: #4b5563;
+}
+
+.navigation-mobile-item-inactive:hover {
+  color: #1d4ed8;
+}
+
+.navigation-mobile-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.navigation-mobile-label {
+  font-size: 0.75rem;
+}

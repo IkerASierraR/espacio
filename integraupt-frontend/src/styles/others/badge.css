@@ -1,0 +1,79 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  border: 1px solid;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  width: fit-content;
+  white-space: nowrap;
+  flex-shrink: 0;
+  gap: 0.25rem;
+  overflow: hidden;
+  transition: color 0.2s, box-shadow 0.2s;
+}
+
+.badge > svg {
+  height: 0.75rem;
+  width: 0.75rem;
+  pointer-events: none;
+}
+
+.badge:focus-visible {
+  border-color: #3b82f6;
+  ring: 3px;
+  ring-color: rgba(59, 130, 246, 0.5);
+}
+
+.badge[aria-invalid="true"] {
+  ring-color: rgba(220, 38, 38, 0.2);
+  border-color: #dc2626;
+}
+
+.badge-default {
+  border-color: transparent;
+  background-color: #3b82f6;
+  color: white;
+}
+
+.badge-default[a]:hover {
+  background-color: rgba(59, 130, 246, 0.9);
+}
+
+.badge-secondary {
+  border-color: transparent;
+  background-color: #6b7280;
+  color: white;
+}
+
+.badge-secondary[a]:hover {
+  background-color: rgba(107, 114, 128, 0.9);
+}
+
+.badge-destructive {
+  border-color: transparent;
+  background-color: #dc2626;
+  color: white;
+}
+
+.badge-destructive[a]:hover {
+  background-color: rgba(220, 38, 38, 0.9);
+}
+
+.badge-destructive:focus-visible {
+  ring-color: rgba(220, 38, 38, 0.2);
+}
+
+.badge-outline {
+  color: #111827;
+}
+
+.badge-outline[a]:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+}
