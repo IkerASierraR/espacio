@@ -41,10 +41,9 @@ public class EspacioControlador {
     public List<EspacioResponse> listar(
             @RequestParam(value = "estado", required = false) Integer estado,
             @RequestParam(value = "escuelaId", required = false) Integer escuelaId,
-            @RequestParam(value = "facultadId", required = false) Integer facultadId,
             @RequestParam(value = "tipo", required = false) String tipo
     ) {
-        return espacioServicio.listar(estado, escuelaId, facultadId, tipo);
+        return espacioServicio.listar(estado, escuelaId, tipo);
     }
 
     @GetMapping("/{id}")

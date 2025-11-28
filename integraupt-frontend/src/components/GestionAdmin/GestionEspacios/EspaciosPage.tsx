@@ -12,7 +12,6 @@ import {
 } from "./validators";
 import { useEspacios } from "./hooks/useEspacios";
 import { useEscuelas } from "./hooks/useEscuelas";
-import { useFacultades } from "./hooks/useFacultades";
 import type { EspacioFilters } from "./espaciosService";
 
 interface GestionEspaciosProps {
@@ -31,17 +30,11 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
     loading: escuelasLoading,
     error: escuelasError
   } = useEscuelas();
-  const {
-    facultades,
-    loading: facultadesLoading,
-    error: facultadesError
-  } = useFacultades();
   const [searchTerm, setSearchTerm] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [filters, setFilters] = useState({
     estado: "all",
     escuelaId: "",
-    facultadId: "",
     tipo: ""
   });
   const [modalOpen, setModalOpen] = useState(false);
@@ -71,15 +64,6 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
     [espacios]
   );
 
-  const facultadOptions = useMemo(() => {
-    if (facultades.length > 0) {
-      return facultades;
-    }
-
-    const uniqueIds = Array.from(new Set(escuelas.map((escuela) => escuela.facultadId)));
-    return uniqueIds.map((id) => ({ id, nombre: `Facultad ${id}`, abreviatura: null }));
-  }, [escuelas, facultades]);
-
   const buildFiltersPayload = (): EspacioFilters => {
     const payload: EspacioFilters = {};
     if (filters.estado === "activos") {
@@ -94,16 +78,17 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
     }
 
     const escuelaId = filters.escuelaId.trim();
-    const facultadId = filters.facultadId.trim();
-
     if (escuelaId) {
       payload.escuelaId = Number(escuelaId);
-    } else if (facultadId) {
-      payload.facultadId = Number(facultadId);
     }
 
     return payload;
   };
+
+  const hasActiveFilters = useMemo(
+    () => filters.estado !== "all" || filters.escuelaId.trim() !== "" || filters.tipo.trim() !== "",
+    [filters]
+  );
 
   const openCreateModal = () => {
     setMode("create");
@@ -202,28 +187,10 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
   };
 
   const handleFilterChange = (field: keyof typeof filters, value: string) => {
-    setFilters((prev) => {
-      if (field === "escuelaId") {
-        return {
-          ...prev,
-          escuelaId: value,
-          facultadId: value ? "" : prev.facultadId
-        };
-      }
-
-      if (field === "facultadId") {
-        return {
-          ...prev,
-          facultadId: value,
-          escuelaId: value ? "" : prev.escuelaId
-        };
-      }
-
-      return {
-        ...prev,
-        [field]: value
-      };
-    });
+    setFilters((prev) => ({
+      ...prev,
+      [field]: value
+    }));
   };
 
   const applyFilters = async () => {
@@ -240,7 +207,7 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
   };
 
   const clearFilters = async () => {
-    setFilters({ estado: "all", escuelaId: "", facultadId: "", tipo: "" });
+    setFilters({ estado: "all", escuelaId: "", tipo: "" });
     try {
       await loadEspacios();
     } catch (error) {
@@ -343,31 +310,13 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
                     <select
                       id="escuela"
                       value={filters.escuelaId}
-                      disabled={Boolean(filters.facultadId)}
+                      disabled={escuelasLoading}
                       onChange={(event) => handleFilterChange("escuelaId", event.target.value)}
                     >
                       <option value="">Todas</option>
                       {escuelas.map((escuela) => (
                         <option key={escuela.id} value={escuela.id}>
                           {escuela.nombre}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="gestion-espacios-filter">
-                    <label htmlFor="facultad">Facultad</label>
-                    <select
-                      id="facultad"
-                      value={filters.facultadId}
-                      disabled={Boolean(filters.escuelaId) || facultadesLoading}
-                      onChange={(event) => handleFilterChange("facultadId", event.target.value)}
-                    >
-                      <option value="">Todas</option>
-                      {facultadOptions.map((facultad) => (
-                        <option key={facultad.id} value={facultad.id}>
-                          {facultad.abreviatura && facultad.abreviatura.length > 0
-                            ? `${facultad.abreviatura} — ${facultad.nombre}`
-                            : facultad.nombre}
                         </option>
                       ))}
                     </select>
@@ -386,15 +335,12 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
                   </div>
                 </div>
                 <div className="gestion-espacios-filter-actions">
-                  <p className="gestion-espacios-filter-hint">
-                    Filtra por escuela o facultad, no ambos al mismo tiempo.
-                  </p>
+                  <p className="gestion-espacios-filter-hint">Filtra por escuela, estado o tipo.</p>
                   <div className="gestion-espacios-filter-buttons">
                     <button
                       type="button"
                       className="gestion-espacios-btn secondary"
                       onClick={clearFilters}
-                      disabled={loading || escuelasLoading}
                     >
                       Limpiar filtros
                     </button>
@@ -402,7 +348,7 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
                       type="button"
                       className="gestion-espacios-btn primary"
                       onClick={applyFilters}
-                      disabled={loading || escuelasLoading}
+                      disabled={loading || escuelasLoading || !hasActiveFilters}
                     >
                       Aplicar filtros
                     </button>
@@ -438,13 +384,6 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
         <div className="gestion-espacios-alert error">
           <AlertCircle size={16} />
           <span>{escuelasError}</span>
-        </div>
-      )}
-
-      {facultadesError && (
-        <div className="gestion-espacios-alert error">
-          <AlertCircle size={16} />
-          <span>{facultadesError}</span>
         </div>
       )}
       

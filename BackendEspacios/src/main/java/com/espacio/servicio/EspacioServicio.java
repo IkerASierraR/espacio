@@ -33,19 +33,18 @@ public class EspacioServicio implements IEspacioServicio {
     @Override
     @Transactional(readOnly = true)
     public List<EspacioResponse> listar() {
-        return listar(null, null, null, null);
+        return listar(null, null, null);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<EspacioResponse> listar(Integer estado, Integer escuelaId, Integer facultadId, String tipo) {
-        validarFiltros(estado, escuelaId, facultadId, tipo);
-        
+    public List<EspacioResponse> listar(Integer estado, Integer escuelaId, String tipo) {
+        validarFiltros(estado, escuelaId, tipo);
+
         return espacioRepositorio.findAll() 
                 .stream()
                 .filter(espacio -> estado == null || espacio.getEstado().equals(estado))
                 .filter(espacio -> escuelaId == null || espacio.getEscuela().getId().equals(escuelaId))
-                .filter(espacio -> facultadId == null || espacio.getEscuela().getFacultadId().equals(facultadId))
                 .filter(espacio -> {
                     if (tipo == null) {
                         return true;
@@ -138,24 +137,14 @@ public class EspacioServicio implements IEspacioServicio {
         }
     }
 
-    private void validarFiltros(Integer estado, Integer escuelaId, Integer facultadId, String tipo) {
+    private void validarFiltros(Integer estado, Integer escuelaId, String tipo) {
         if (estado != null && estado != 0 && estado != 1) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "El estado debe ser 0 (inactivo) o 1 (activo)." );
         }
 
-        if (escuelaId != null && facultadId != null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    "No es posible filtrar por escuela y facultad al mismo tiempo.");
-        }
-
         if (escuelaId != null) {
             obtenerEscuela(escuelaId);
-        }
-
-        if (facultadId != null && !escuelaRepositorio.existsByFacultadId(facultadId)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    "No se encontro una escuela registrada para la facultad con id " + facultadId + ".");
         }
 
         if (tipo != null && !tipo.isBlank()) {

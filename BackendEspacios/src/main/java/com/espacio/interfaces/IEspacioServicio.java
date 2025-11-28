@@ -12,7 +12,7 @@ public interface IEspacioServicio {
 
     List<EspacioResponse> listar();
    
-    List<EspacioResponse> listar(Integer estado, Integer escuelaId, Integer facultadId, String tipo);
+    List<EspacioResponse> listar(Integer estado, Integer escuelaId, String tipo);
 
     EspacioResponse buscarPorId(Integer id);
 

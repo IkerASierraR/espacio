@@ -5,7 +5,6 @@ import type { Espacio, EspacioPayload } from "./types";
 export type EspacioFilters = {
   estado?: number;
   escuelaId?: number;
-  facultadId?: number;
   tipo?: string;
 };
 
