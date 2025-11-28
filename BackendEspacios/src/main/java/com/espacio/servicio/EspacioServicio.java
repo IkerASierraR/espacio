@@ -12,6 +12,7 @@ import com.espacio.modelo.Espacio;
 import com.espacio.repositorio.EscuelaRepositorio;
 import com.espacio.repositorio.EspacioRepositorio;
 import java.util.List;
+import java.util.Locale;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,8 +33,25 @@ public class EspacioServicio implements IEspacioServicio {
     @Override
     @Transactional(readOnly = true)
     public List<EspacioResponse> listar() {
-        return espacioRepositorio.findAll()
+        return listar(null, null, null, null);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<EspacioResponse> listar(Integer estado, Integer escuelaId, Integer facultadId, String tipo) {
+        validarFiltros(estado, escuelaId, facultadId, tipo);
+        
+        return espacioRepositorio.findAll() 
                 .stream()
+                .filter(espacio -> estado == null || espacio.getEstado().equals(estado))
+                .filter(espacio -> escuelaId == null || espacio.getEscuela().getId().equals(escuelaId))
+                .filter(espacio -> facultadId == null || espacio.getEscuela().getFacultadId().equals(facultadId))
+                .filter(espacio -> {
+                    if (tipo == null) {
+                        return true;
+                    }
+                    return espacio.getTipo() != null && espacio.getTipo().equalsIgnoreCase(tipo);
+                })
                 .map(this::mapearRespuesta)
                 .toList();
     }
@@ -92,7 +110,8 @@ public class EspacioServicio implements IEspacioServicio {
                 espacio.getEquipamiento(),
                 espacio.getEstado(),
                 escuela != null ? escuela.getId() : null,
-                escuela != null ? escuela.getNombre() : null
+                escuela != null ? escuela.getNombre() : null,
+                escuela != null ? escuela.getFacultadId() : null
         );
     }
 
@@ -116,6 +135,35 @@ public class EspacioServicio implements IEspacioServicio {
         if (existente.isPresent() && (idActual == null || !existente.get().getId().equals(idActual))) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "El codigo " + codigo + " ya esta registrado en otro espacio.");
+        }
+    }
+
+    private void validarFiltros(Integer estado, Integer escuelaId, Integer facultadId, String tipo) {
+        if (estado != null && estado != 0 && estado != 1) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "El estado debe ser 0 (inactivo) o 1 (activo)." );
+        }
+
+        if (escuelaId != null && facultadId != null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "No es posible filtrar por escuela y facultad al mismo tiempo.");
+        }
+
+        if (escuelaId != null) {
+            obtenerEscuela(escuelaId);
+        }
+
+        if (facultadId != null && !escuelaRepositorio.existsByFacultadId(facultadId)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "No se encontro una escuela registrada para la facultad con id " + facultadId + ".");
+        }
+
+        if (tipo != null && !tipo.isBlank()) {
+            String tipoNormalizado = tipo.trim().toLowerCase(Locale.getDefault());
+            if (!"laboratorio".equals(tipoNormalizado) && !"salon".equals(tipoNormalizado)) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                        "El tipo solo puede ser 'laboratorio' o 'salon'.");
+            }
         }
     }
 }

@@ -11,6 +11,8 @@ import java.util.List;
 public interface IEspacioServicio {
 
     List<EspacioResponse> listar();
+   
+    List<EspacioResponse> listar(Integer estado, Integer escuelaId, Integer facultadId, String tipo);
 
     EspacioResponse buscarPorId(Integer id);
 

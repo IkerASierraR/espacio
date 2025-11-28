@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import type { Espacio, EspacioPayload } from "../types";
-import { createEspacio, deleteEspacio, fetchEspacios, updateEspacio } from "../espaciosService";
+import {
+  createEspacio,
+  deleteEspacio,
+  fetchEspacios,
+  type EspacioFilters,
+  updateEspacio
+} from "../espaciosService";
 
 interface StatusState {
   loading: boolean;
@@ -9,17 +15,18 @@ interface StatusState {
 
 export const useEspacios = () => {
   const [espacios, setEspacios] = useState<Espacio[]>([]);
+  const [currentFilters, setCurrentFilters] = useState<EspacioFilters | undefined>(undefined);
   const [{ loading, error }, setStatus] = useState<StatusState>({
     loading: false,
     error: null
   });
 
-  const loadEspacios = useCallback(async () => {
+  const loadEspacios = useCallback(async (filters?: EspacioFilters) => {
     setStatus((prev) => ({ ...prev, loading: true }));
     try {
-      const data = await fetchEspacios();
+      const data = await fetchEspacios(filters);
       setEspacios(data);
-      setStatus({ loading: false, error: null });
+      setCurrentFilters(filters);
       return data;
     } catch (loadError) {
       const message =
@@ -80,6 +87,7 @@ export const useEspacios = () => {
     loading,
     error,
     loadEspacios,
+    currentFilters,
     saveEspacio,
     removeEspacio
   };

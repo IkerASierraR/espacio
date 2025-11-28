@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { AlertCircle, Layers3, Plus, RefreshCw, Search } from "lucide-react";
+import { AlertCircle, Filter, Layers3, Plus, RefreshCw, Search } from "lucide-react";
 import "../../../styles/GestionEspacios.css";
 import { EspacioModal } from "./components/EspacioModal";
 import { EspacioTable } from "./components/EspacioTable";
@@ -12,6 +12,7 @@ import {
 } from "./validators";
 import { useEspacios } from "./hooks/useEspacios";
 import { useEscuelas } from "./hooks/useEscuelas";
+import type { EspacioFilters } from "./espaciosService";
 
 interface GestionEspaciosProps {
   onAuditLog?: (message: string, detail?: string) => void;
@@ -30,6 +31,13 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
     error: escuelasError
   } = useEscuelas();
   const [searchTerm, setSearchTerm] = useState("");
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [filters, setFilters] = useState({
+    estado: "all",
+    escuelaId: "",
+    facultadId: "",
+    tipo: ""
+  });
   const [modalOpen, setModalOpen] = useState(false);
   const [mode, setMode] = useState<EspacioFormMode>("create");
   const [formValues, setFormValues] = useState<EspacioFormValues>(createEmptyFormValues());
@@ -44,13 +52,7 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
       return espacios;
     }
 
-    return espacios.filter((espacio) => {
-      return (
-        espacio.nombre.toLowerCase().includes(query) ||
-        espacio.codigo.toLowerCase().includes(query) ||
-        espacio.tipo.toLowerCase().includes(query)
-      );
-    });
+    return espacios.filter((espacio) => espacio.nombre.toLowerCase().includes(query));
   }, [espacios, searchTerm]);
 
   const totalActivos = useMemo(
@@ -62,6 +64,32 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
     () => espacios.filter((espacio) => espacio.estado === 0).length,
     [espacios]
   );
+
+  const facultades = useMemo(
+    () => Array.from(new Set(escuelas.map((escuela) => escuela.facultadId))),
+    [escuelas]
+  );
+
+  const buildFiltersPayload = (): EspacioFilters => {
+    const payload: EspacioFilters = {};
+    if (filters.estado === "activos") {
+      payload.estado = 1;
+    } else if (filters.estado === "inactivos") {
+      payload.estado = 0;
+    }
+
+    if (filters.tipo) {
+      payload.tipo = filters.tipo;
+    }
+
+    if (filters.escuelaId) {
+      payload.escuelaId = Number(filters.escuelaId);
+    } else if (filters.facultadId) {
+      payload.facultadId = Number(filters.facultadId);
+    }
+
+    return payload;
+  };
 
   const openCreateModal = () => {
     setMode("create");
@@ -148,7 +176,7 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
 
   const handleReload = async () => {
     try {
-      await loadEspacios();
+      await loadEspacios(buildFiltersPayload());
       console.log("success", "Lista actualizada.");
     } catch (reloadError) {
       const message =
@@ -156,6 +184,53 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
           ? reloadError.message
           : "No se pudo sincronizar la lista.";
       notifyStatus("error", message);
+    }
+  };
+
+  const handleFilterChange = (field: keyof typeof filters, value: string) => {
+    setFilters((prev) => {
+      if (field === "escuelaId") {
+        return {
+          ...prev,
+          escuelaId: value,
+          facultadId: value ? "" : prev.facultadId
+        };
+      }
+
+      if (field === "facultadId") {
+        return {
+          ...prev,
+          facultadId: value,
+          escuelaId: value ? "" : prev.escuelaId
+        };
+      }
+
+      return {
+        ...prev,
+        [field]: value
+      };
+    });
+  };
+
+  const applyFilters = async () => {
+    try {
+      await loadEspacios(buildFiltersPayload());
+      setFiltersOpen(false);
+    } catch (filterError) {
+      const message =
+        filterError instanceof Error
+          ? filterError.message
+          : "No se pudieron aplicar los filtros.";
+      notifyStatus("error", message);
+    }
+  };
+
+  const clearFilters = async () => {
+    setFilters({ estado: "all", escuelaId: "", facultadId: "", tipo: "" });
+    try {
+      await loadEspacios();
+    } catch (error) {
+      console.error("Error reloading espacios", error);
     }
   };
 
@@ -214,15 +289,112 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
       </div>
 
       <div className="gestion-espacios-toolbar">
-        <div className="gestion-espacios-search">
-          <Search size={16} />
-          <input
-            type="search"
-            maxLength={50}
-            placeholder="Buscar por codigo, nombre o tipo"
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-          />
+        <div className="gestion-espacios-filter-group">
+          <div className="gestion-espacios-search">
+            <Search size={16} />
+            <input
+              type="search"
+              maxLength={50}
+              placeholder="Buscar por nombre"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+            />
+          </div>
+          <div className="gestion-espacios-filter-toggle">
+            <button
+              type="button"
+              className="gestion-espacios-btn ghost"
+              onClick={() => setFiltersOpen((prev) => !prev)}
+            >
+              <Filter size={16} />
+              Filtros
+            </button>
+            {filtersOpen && (
+              <div className="gestion-espacios-filters-panel">
+                <div className="gestion-espacios-filter-row">
+                  <div className="gestion-espacios-filter">
+                    <label htmlFor="estado">Estado</label>
+                    <select
+                      id="estado"
+                      value={filters.estado}
+                      onChange={(event) => handleFilterChange("estado", event.target.value)}
+                    >
+                      <option value="all">Todos</option>
+                      <option value="activos">Activos</option>
+                      <option value="inactivos">Inactivos</option>
+                    </select>
+                  </div>
+                  <div className="gestion-espacios-filter">
+                    <label htmlFor="escuela">Escuela</label>
+                    <select
+                      id="escuela"
+                      value={filters.escuelaId}
+                      disabled={Boolean(filters.facultadId)}
+                      onChange={(event) => handleFilterChange("escuelaId", event.target.value)}
+                    >
+                      <option value="">Todas</option>
+                      {escuelas.map((escuela) => (
+                        <option key={escuela.id} value={escuela.id}>
+                          {escuela.nombre}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="gestion-espacios-filter">
+                    <label htmlFor="facultad">Facultad</label>
+                    <select
+                      id="facultad"
+                      value={filters.facultadId}
+                      disabled={Boolean(filters.escuelaId)}
+                      onChange={(event) => handleFilterChange("facultadId", event.target.value)}
+                    >
+                      <option value="">Todas</option>
+                      {facultades.map((facultadId) => (
+                        <option key={facultadId} value={facultadId}>
+                          Facultad {facultadId}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="gestion-espacios-filter">
+                    <label htmlFor="tipo">Tipo</label>
+                    <select
+                      id="tipo"
+                      value={filters.tipo}
+                      onChange={(event) => handleFilterChange("tipo", event.target.value)}
+                    >
+                      <option value="">Todos</option>
+                      <option value="laboratorio">Laboratorio</option>
+                      <option value="salon">Salon</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="gestion-espacios-filter-actions">
+                  <p className="gestion-espacios-filter-hint">
+                    Filtra por escuela o facultad, no ambos al mismo tiempo.
+                  </p>
+                  <div className="gestion-espacios-filter-buttons">
+                    <button
+                      type="button"
+                      className="gestion-espacios-btn secondary"
+                      onClick={clearFilters}
+                      disabled={loading || escuelasLoading}
+                    >
+                      Limpiar filtros
+                    </button>
+                    <button
+                      type="button"
+                      className="gestion-espacios-btn primary"
+                      onClick={applyFilters}
+                      disabled={loading || escuelasLoading}
+                    >
+                      Aplicar filtros
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
         <div className="gestion-espacios-meta">
           {filteredEspacios.length} resultados visibles

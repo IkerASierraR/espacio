@@ -14,6 +14,7 @@ export interface Espacio {
   estado: number;
   escuelaId: number;
   escuelaNombre?: string | null;
+  facultadId?: number | null;
 }
 
 export type EspacioPayload = {

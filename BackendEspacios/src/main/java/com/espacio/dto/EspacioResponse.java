@@ -15,12 +15,14 @@ public class EspacioResponse {
     private Integer estado;
     private Integer escuelaId;
     private String escuelaNombre;
+    private Integer facultadId;
 
     public EspacioResponse() {
     }
 
     public EspacioResponse(Integer id, String codigo, String nombre, String tipo, Integer capacidad,
-                           String equipamiento, Integer estado, Integer escuelaId, String escuelaNombre) {
+                           String equipamiento, Integer estado, Integer escuelaId, String escuelaNombre,
+                           Integer facultadId) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -30,6 +32,7 @@ public class EspacioResponse {
         this.estado = estado;
         this.escuelaId = escuelaId;
         this.escuelaNombre = escuelaNombre;
+        this.facultadId = facultadId;
     }
 
     public Integer getId() {
@@ -102,5 +105,13 @@ public class EspacioResponse {
 
     public void setEscuelaNombre(String escuelaNombre) {
         this.escuelaNombre = escuelaNombre;
+    }
+
+    public Integer getFacultadId() {
+        return facultadId;
+    }
+
+    public void setFacultadId(Integer facultadId) {
+        this.facultadId = facultadId;
     }
 }

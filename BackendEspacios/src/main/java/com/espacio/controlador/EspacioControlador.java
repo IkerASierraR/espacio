@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -37,8 +38,13 @@ public class EspacioControlador {
     }
 
     @GetMapping
-    public List<EspacioResponse> listar() {
-        return espacioServicio.listar();
+    public List<EspacioResponse> listar(
+            @RequestParam(value = "estado", required = false) Integer estado,
+            @RequestParam(value = "escuelaId", required = false) Integer escuelaId,
+            @RequestParam(value = "facultadId", required = false) Integer facultadId,
+            @RequestParam(value = "tipo", required = false) String tipo
+    ) {
+        return espacioServicio.listar(estado, escuelaId, facultadId, tipo);
     }
 
     @GetMapping("/{id}")
