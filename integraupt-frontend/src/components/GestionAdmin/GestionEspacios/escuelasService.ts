@@ -1,6 +1,6 @@
 import axios, { type AxiosInstance, type AxiosResponse } from "axios";
-import { ESPACIOS_API_BASE_URL } from "../../../utils/apiConfig";
-import type { Escuela } from "./types";
+import { ESPACIOS_API_BASE_URL, getReservasApiUrl } from "../../../utils/apiConfig";
+import type { Escuela, Facultad } from "./types";
 
 const escuelasClient: AxiosInstance = axios.create({
   baseURL: ESPACIOS_API_BASE_URL,
@@ -45,3 +45,16 @@ const unwrap = async <T>(promise: Promise<AxiosResponse<T>>): Promise<T> => {
 
 export const fetchEscuelas = (): Promise<Escuela[]> =>
   unwrap(escuelasClient.get<Escuela[]>("/api/espacios/escuelas"));
+
+export const fetchFacultades = async (): Promise<Facultad[]> => {
+  const response = await axios.get<Facultad[]>(getReservasApiUrl("/api/catalogos/facultades"), {
+    headers: { "Content-Type": "application/json" },
+    timeout: 15000
+  });
+
+  return response.data.map((item) => ({
+    id: item.id,
+    nombre: item.nombre,
+    abreviatura: item.abreviatura ?? null
+  }));
+};

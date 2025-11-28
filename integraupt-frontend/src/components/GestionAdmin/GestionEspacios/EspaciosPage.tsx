@@ -12,6 +12,7 @@ import {
 } from "./validators";
 import { useEspacios } from "./hooks/useEspacios";
 import { useEscuelas } from "./hooks/useEscuelas";
+import { useFacultades } from "./hooks/useFacultades";
 import type { EspacioFilters } from "./espaciosService";
 
 interface GestionEspaciosProps {
@@ -30,6 +31,11 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
     loading: escuelasLoading,
     error: escuelasError
   } = useEscuelas();
+  const {
+    facultades,
+    loading: facultadesLoading,
+    error: facultadesError
+  } = useFacultades();
   const [searchTerm, setSearchTerm] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [filters, setFilters] = useState({
@@ -65,10 +71,14 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
     [espacios]
   );
 
-  const facultades = useMemo(
-    () => Array.from(new Set(escuelas.map((escuela) => escuela.facultadId))),
-    [escuelas]
-  );
+  const facultadOptions = useMemo(() => {
+    if (facultades.length > 0) {
+      return facultades;
+    }
+
+    const uniqueIds = Array.from(new Set(escuelas.map((escuela) => escuela.facultadId)));
+    return uniqueIds.map((id) => ({ id, nombre: `Facultad ${id}`, abreviatura: null }));
+  }, [escuelas, facultades]);
 
   const buildFiltersPayload = (): EspacioFilters => {
     const payload: EspacioFilters = {};
@@ -78,14 +88,18 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
       payload.estado = 0;
     }
 
-    if (filters.tipo) {
-      payload.tipo = filters.tipo;
+    const tipo = filters.tipo.trim();
+    if (tipo) {
+      payload.tipo = tipo;
     }
 
-    if (filters.escuelaId) {
-      payload.escuelaId = Number(filters.escuelaId);
-    } else if (filters.facultadId) {
-      payload.facultadId = Number(filters.facultadId);
+    const escuelaId = filters.escuelaId.trim();
+    const facultadId = filters.facultadId.trim();
+
+    if (escuelaId) {
+      payload.escuelaId = Number(escuelaId);
+    } else if (facultadId) {
+      payload.facultadId = Number(facultadId);
     }
 
     return payload;
@@ -345,13 +359,15 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
                     <select
                       id="facultad"
                       value={filters.facultadId}
-                      disabled={Boolean(filters.escuelaId)}
+                      disabled={Boolean(filters.escuelaId) || facultadesLoading}
                       onChange={(event) => handleFilterChange("facultadId", event.target.value)}
                     >
                       <option value="">Todas</option>
-                      {facultades.map((facultadId) => (
-                        <option key={facultadId} value={facultadId}>
-                          Facultad {facultadId}
+                      {facultadOptions.map((facultad) => (
+                        <option key={facultad.id} value={facultad.id}>
+                          {facultad.abreviatura && facultad.abreviatura.length > 0
+                            ? `${facultad.abreviatura} — ${facultad.nombre}`
+                            : facultad.nombre}
                         </option>
                       ))}
                     </select>
@@ -425,6 +441,13 @@ export const GestionEspacios: React.FC<GestionEspaciosProps> = ({ onAuditLog }) 
         </div>
       )}
 
+      {facultadesError && (
+        <div className="gestion-espacios-alert error">
+          <AlertCircle size={16} />
+          <span>{facultadesError}</span>
+        </div>
+      )}
+      
       <EspacioTable
         espacios={filteredEspacios}
         loading={loading}
