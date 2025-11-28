@@ -36,8 +36,8 @@ export const validateEspacioValues = (values: EspacioFormValues): string[] => {
   }
 
   const capacidadNumber = Number(values.capacidad);
-  if (!Number.isFinite(capacidadNumber) || capacidadNumber <= 0) {
-    errors.push("La capacidad debe ser un numero mayor a cero.");
+  if (!Number.isFinite(capacidadNumber) || capacidadNumber < 1 || capacidadNumber > 100) {
+    errors.push("La capacidad debe ser un numero entre 1 y 100.");
   }
 
   const escuelaNumber = Number(values.escuelaId);

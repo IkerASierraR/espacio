@@ -60,7 +60,16 @@ export const useEspacios = () => {
   const removeEspacio = useCallback(async (id: number) => {
     try {
       await deleteEspacio(id);
-      setEspacios((prev) => prev.filter((espacio) => espacio.id !== id));
+      setEspacios((prev) =>
+        prev.map((espacio) =>
+          espacio.id === id
+            ? {
+                ...espacio,
+                estado: 0
+              }
+            : espacio
+        )
+      );
     } catch (deleteError) {
       throw deleteError;
     }

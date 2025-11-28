@@ -32,7 +32,7 @@ public class EspacioServicio implements IEspacioServicio {
     @Override
     @Transactional(readOnly = true)
     public List<EspacioResponse> listar() {
-        return espacioRepositorio.findAllByEstado(1)
+        return espacioRepositorio.findAll()
                 .stream()
                 .map(this::mapearRespuesta)
                 .toList();

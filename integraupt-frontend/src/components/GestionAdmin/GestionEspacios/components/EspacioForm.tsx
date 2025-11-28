@@ -95,17 +95,24 @@ export const EspacioForm: React.FC<EspacioFormProps> = ({
           </label>
           <input
             id="capacidad"
-            type="text"
-            inputMode="numeric"
-            pattern="[0-9]{1,4}"
-            maxLength={4}
+            type="number"
+            min={1}
+            max={100}
             className="espacio-form-input"
             placeholder="30"
             value={values.capacidad}
             onChange={(event) => {
               const value = event.target.value;
-              if (/^\d{0,4}$/.test(value)) {
-                onChange("capacidad", value);
+              if (value === "") {
+                onChange("capacidad", "");
+                return;
+              }
+
+              if (/^\d{1,3}$/.test(value)) {
+                const numericValue = Number(value);
+                if (numericValue >= 1 && numericValue <= 100) {
+                  onChange("capacidad", value);
+                }
               }
             }}
             required
