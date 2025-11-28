@@ -32,7 +32,7 @@ public class EspacioServicio implements IEspacioServicio {
     @Override
     @Transactional(readOnly = true)
     public List<EspacioResponse> listar() {
-        return espacioRepositorio.findAll()
+        return espacioRepositorio.findAllByEstado(1)
                 .stream()
                 .map(this::mapearRespuesta)
                 .toList();
@@ -66,7 +66,8 @@ public class EspacioServicio implements IEspacioServicio {
     @Override
     public void eliminar(Integer id) {
         Espacio espacio = obtenerEspacio(id);
-        espacioRepositorio.delete(espacio);
+        espacio.setEstado(0);
+        espacioRepositorio.save(espacio);
     }
 
     private void aplicarDatos(Espacio espacio, EspacioRequest request, Escuela escuela) {

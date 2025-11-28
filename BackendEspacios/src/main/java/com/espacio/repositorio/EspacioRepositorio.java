@@ -5,6 +5,7 @@
 package com.espacio.repositorio;
 
 import com.espacio.interfaces.IEspacioRepositorio;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
